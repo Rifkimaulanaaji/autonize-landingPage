@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autonize - AI Cold Email Solutions</title>
+    <title>AutomateAI - AI Automation Solutions</title>
     <style>
         * {
             margin: 0;
@@ -13,10 +12,12 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: #000;
+            color: #fff;
+            background: #1a1a1a;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
         .container {
@@ -25,600 +26,425 @@
             padding: 0 20px;
         }
 
-        /* Navigation */
-        nav {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
+        /* Header */
+        header {
+            padding: 20px 0;
+            background: rgba(139, 92, 246, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 40px;
+            animation: slideDown 0.8s ease-out;
+            border-bottom: 1px solid rgba(139, 92, 246, 0.2);
         }
 
-        .nav-container {
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(45deg, #8b5cf6, #a855f7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .nav-cta {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            text-decoration: none;
-            transition: transform 0.3s ease;
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
         }
 
-        .nav-cta:hover {
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #a855f7;
             transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(45deg, #8b5cf6, #a855f7);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 120px 0 80px;
             text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
+            padding: 80px 0;
+            animation: fadeInUp 1s ease-out;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #fff, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
             opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            opacity: 0.8;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .cta-primary {
-            background: rgba(255, 255, 255, 1);
-            color: #333;
-            padding: 16px 40px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
+        .cta-button {
             display: inline-block;
-            transition: all 0.3s ease;
-            margin: 10px;
-        }
-
-        .cta-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .cta-secondary {
-            background: transparent;
+            padding: 18px 40px;
+            background: linear-gradient(45deg, #8b5cf6, #a855f7);
             color: white;
-            padding: 16px 40px;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
             text-decoration: none;
-            display: inline-block;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
-            margin: 10px;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+            position: relative;
+            overflow: hidden;
         }
 
-        .cta-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: white;
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.4);
         }
 
-        /* Problem Section */
-        .problem {
-            background: white;
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* Services Section */
+        .services {
             padding: 80px 0;
+            background: rgba(139, 92, 246, 0.05);
+            backdrop-filter: blur(20px);
+            margin: 60px 0;
+            border-radius: 30px;
             text-align: center;
+            border: 1px solid rgba(139, 92, 246, 0.1);
         }
 
-        .problem h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #333;
-        }
-
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+        .services-cta {
             margin-top: 50px;
         }
 
-        .problem-item {
-            padding: 30px;
-            background: #f8f9fa;
-            border-radius: 15px;
-            transition: transform 0.3s ease;
-        }
-
-        .problem-item:hover {
-            transform: translateY(-5px);
-        }
-
-        .problem-emoji {
-            font-size: 3rem;
-            margin-bottom: 20px;
-        }
-
-        /* Solution Section */
-        .solution {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 80px 0;
-        }
-
-        .solution-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .solution h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #333;
-        }
-
-        .solution-features {
-            list-style: none;
-            margin: 30px 0;
-        }
-
-        .solution-features li {
-            padding: 10px 0;
-            font-size: 1.1rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .solution-features li::before {
-            content: '✓';
-            color: #667eea;
-            font-weight: bold;
-            margin-right: 15px;
-            font-size: 1.2rem;
-        }
-
-        .solution-visual {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        .services h2 {
             text-align: center;
-        }
-
-        /* Results Section */
-        .results {
-            background: #000;
-            color: white;
-            padding: 80px 0;
-            text-align: center;
-        }
-
-        .results h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin: 50px 0;
-        }
-
-        .stat-item {
-            padding: 30px;
-        }
-
-        .stat-number {
             font-size: 3rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin-bottom: 60px;
+            background: linear-gradient(45deg, #fff, #a855f7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 10px;
         }
 
-        .stat-label {
-            font-size: 1.1rem;
-            opacity: 0.8;
-        }
-
-        /* About Section */
-        .about {
-            background: white;
-            padding: 80px 0;
-        }
-
-        .about-content {
+        .services-grid {
             display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 60px;
-            align-items: center;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
         }
 
-        .profile-image {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: white;
-            margin: 0 auto;
-        }
-
-        .about h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: #333;
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 80px 0;
+        .service-card {
+            background: rgba(139, 92, 246, 0.1);
+            padding: 40px;
+            border-radius: 20px;
             text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            backdrop-filter: blur(20px);
         }
 
-        .cta-section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
+        .service-card:hover {
+            transform: translateY(-10px);
+            background: rgba(139, 92, 246, 0.15);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
         }
 
-        .cta-buttons {
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #8b5cf6, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .service-card p {
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            padding: 80px 0;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .contact h2 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            background: linear-gradient(45deg, #fff, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
             margin-top: 40px;
+        }
+
+        .contact-item {
+            background: rgba(139, 92, 246, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(20px);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            background: rgba(139, 92, 246, 0.15);
+        }
+
+        .contact-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #a855f7;
         }
 
         /* Footer */
         footer {
-            background: #000;
-            color: white;
-            padding: 40px 0;
             text-align: center;
+            padding: 40px 0;
+            background: rgba(139, 92, 246, 0.1);
+            backdrop-filter: blur(20px);
+            margin-top: 60px;
+            border-top: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Floating particles animation */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(139, 92, 246, 0.3);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 0.8;
+            }
         }
 
         /* Responsive */
         @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
             }
 
-            .solution-content,
-            .about-content {
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .services h2,
+            .contact h2 {
+                font-size: 2rem;
+            }
+
+            .services-grid {
                 grid-template-columns: 1fr;
-                text-align: center;
             }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Comment markers for copywriting */
-        .copy-marker {
-            position: relative;
-        }
-
-        .copy-marker::after {
-            content: attr(data-copy);
-            position: absolute;
-            top: -25px;
-            left: 0;
-            background: #ff6b6b;
-            color: white;
-            padding: 5px 10px;
-            font-size: 12px;
-            border-radius: 5px;
-            opacity: 0.8;
-            font-weight: bold;
-            z-index: 10;
         }
     </style>
 </head>
-
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <div class="nav-container">
-                <div class="logo">Autonize</div>
-                <a href="#contact" class="nav-cta" onclick="bookMeeting()">Book Meeting</a>
+    <!-- Floating particles -->
+    <div class="particles" id="particles"></div>
+
+    <header>
+        <nav class="container">
+            <div class="logo">AutomateAI</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero" id="home">
+            <h1>Scale Your Business with AI</h1>
+            <p class="hero-subtitle">We Build AI Systems That Work 24/7</p>
+            <p class="hero-description">
+             We help businesses scale their outreach with smart automation systems — designed to engage the right people, at the right time, in the right way.    
+            </p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+                <a href="#contact" class="cta-button">Book Free Strategy Call</a>
+                <a href="#contact" class="cta-button" style="background: linear-gradient(45deg, #7c3aed, #8b5cf6);">Get Free Consultation</a>
             </div>
-        </div>
-    </nav>
+        </section>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <!-- COPYWRITING MARKER: HERO HEADLINE -->
-                <h1 class="copy-marker" data-copy="HERO-HEADLINE">Still Stuck at 0.5% Email Response Rates? Let’s Fix
-                    That.</h1>
-
-                
-                <p class="copy-marker" data-copy="HERO-SUBHEADLINE">You're losing hours—and opportunities—every week.
-                    Our AI delivers ultra-personalized cold emails that actually get replies, not ignored.</p>
-
-                <div class="cta-buttons">
-                    <a href="#contact" class="cta-primary" onclick="bookMeeting()">Get My Free Email Audit</a>
-                    <a href="#solution" class="cta-secondary">Show Me The Secret</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Problem Section -->
-    <section class="problem">
-        <div class="container">
-            <!-- COPYWRITING MARKER: PROBLEM HEADLINE -->
-            <h2 class="copy-marker" data-copy="PROBLEM-HEADLINE">Stop Burning $3,000+ Every Month on Cold Outreach That
-                Doesn’t Convert</h2>
-
-            <!-- COPYWRITING MARKER: PROBLEM DESCRIPTION -->
-            <p class="copy-marker" data-copy="PROBLEM-DESCRIPTION">Every ignored email = lost revenue. Here's exactly
-                what's killing your conversion rates:</p>
-
-            <div class="problem-grid">
-                <div class="problem-item">
-                    <div class="problem-emoji">🤖</div>
-                    <!-- COPYWRITING MARKER: PROBLEM 1 -->
-                    <h3 class="copy-marker" data-copy="PROBLEM-1-TITLE">"Dear [First Name]" Templates</h3>
-                    <p class="copy-marker" data-copy="PROBLEM-1-DESC">Prospects can smell mass emails from miles away.
-                        Your "personalized" opener fooled nobody in 2023. It definitely won't work in 2025.</p>
-                </div>
-
-                <div class="problem-item">
-                    <div class="problem-emoji">💸</div>
-                    <!-- COPYWRITING MARKER: PROBLEM 2 -->
-                    <h3 class="copy-marker" data-copy="PROBLEM-2-TITLE">Manual Work That Kills Your Time</h3>
-                    <p class="copy-marker" data-copy="PROBLEM-2-DESC">Spending 15+ hours researching prospects? That's
-                        not selling—that's busywork. And it’s costing you real money.</p>
-                </div>
-
-                <div class="problem-item">
-                    <div class="problem-emoji">📉</div>
-                    <!-- COPYWRITING MARKER: PROBLEM 3 -->
-                    <h3 class="copy-marker" data-copy="PROBLEM-3-TITLE">Tiny Response Rates, Big Wasted Potential</h3>
-                    <p class="copy-marker" data-copy="PROBLEM-3-DESC">Your competitors are booking meetings from cold
-                        emails. If you're stuck at 0.5%, it's not the market—it’s your message.</p>
+        <section class="services" id="services">
+            <h2>What We Do</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <h3>Lead Generation</h3>
+                    <p>Scale your outreach with AI-powered Hyper personalize cold email</p>
                 </div>
             </div>
-        </div>
-    </section>
+            <div class="services-cta">
+                <p style="font-size: 1.3rem; margin-bottom: 25px; opacity: 0.9;">Ready to automate your business?</p>
+                <a href="#contact" class="cta-button">Book Your Free Strategy Call</a>
+            </div>
+        </section>
 
-    <!-- Solution Section -->
-    <section class="solution" id="solution">
-        <div class="container">
-            <div class="solution-content">
-                <div>
-                    <!-- COPYWRITING MARKER: SOLUTION HEADLINE -->
-                    <h2 class="copy-marker" data-copy="SOLUTION-HEADLINE">The Secret: AI That Thinks Like Your Best
-                        Sales Rep</h2>
-
-                    <!-- COPYWRITING MARKER: SOLUTION DESCRIPTION -->
-                    <p class="copy-marker" data-copy="SOLUTION-DESCRIPTION"><strong>Here's what happened when we gave AI
-                            access to 50,000+ high-converting cold emails:</strong> It learned to write emails so
-                        personalized, prospects reply thinking you spent hours researching them personally. (Spoiler:
-                        You didn't.)</p>
-
-                    <ul class="solution-features">
-                        <!-- COPYWRITING MARKER: FEATURES -->
-                        <li class="copy-marker" data-copy="FEATURE-1"><strong>Deep prospect intel in 30 seconds</strong>
-                            - Company news, recent wins, personal interests, pain points</li>
-                        <li class="copy-marker" data-copy="FEATURE-2"><strong>Psychology-based email generation</strong>
-                            - Uses proven persuasion triggers, not generic templates</li>
-                        <li class="copy-marker" data-copy="FEATURE-3"><strong>Auto A/B testing</strong> - Continuously
-                            improves your response rates without manual work</li>
-                        <li class="copy-marker" data-copy="FEATURE-4"><strong>Deliverability-optimized suggestions</strong> - Helps you write emails that avoid spam triggers and reach more inboxes</li>
-
-                    </ul>
-
-                    <a href="#contact" class="cta-primary" onclick="bookMeeting()">Show Me How (Free Audit)</a>
+        <section class="contact" id="contact">
+            <h2>Ready to Scale?</h2>
+            <p style="font-size: 1.2rem; opacity: 0.8; margin-bottom: 40px;">
+                Book a free strategy call and discover how AI can 10x your business growth
+            </p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h4>📧 Email</h4>
+                    <p>rifki@autonize.site</p>
                 </div>
-
-                <div class="solution-visual">
-                    <!-- COPYWRITING MARKER: SOLUTION VISUAL TEXT -->
-                    <h3 class="copy-marker" data-copy="VISUAL-HEADLINE">From This → To This</h3>
-                    <p class="copy-marker" data-copy="VISUAL-DESCRIPTION">Transform generic templates into compelling,
-                        personalized messages that get responses.</p>
-
-                    <!-- Placeholder for before/after visual -->
-    <div class="email-before-after" style="display: flex; gap: 20px; flex-wrap: wrap;">
-    <div style="flex: 1; min-width: 300px; background-color: #f2f2f2; padding: 20px; border-radius: 10px;">
-        <h4 style="margin-top: 0;">❌ Before</h4>
-        <p>Subject: Let's Connect</p>
-        <p>Hi [First Name],<br><br>
-        I hope this email finds you well. I wanted to introduce our services that can help your business grow. Let me know if you're interested in chatting.<br><br>
-        Best regards,<br>Rifki</p>
-    </div>
-    <div style="flex: 1; min-width: 300px; background-color: #d9fdd3; padding: 20px; border-radius: 10px;">
-        <h4 style="margin-top: 0;">✅ After (with AI)</h4>
-        <p>Subject: Loved your take on Q2 revenue — quick idea</p>
-        <p>Hey Sarah,<br><br>
-        Just read your LinkedIn post on doubling ARR last quarter — congrats! Noticed you're hiring more SDRs, which tells me cold outreach is scaling up. If you’re open to it, I’d love to show you a cold email strategy that gets 10%+ response rates (without hiring more writers).<br><br>
-        Want me to show you how it could look for your team?<br><br>
-        — Rifki</p>
-    </div>
-</div>
-
+                <div class="contact-item">
+                    <h4>🌐 Website</h4>
+                    <p>autonize.site</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Results Section -->
-    <section class="results">
-        <div class="container">
-            <!-- COPYWRITING MARKER: RESULTS HEADLINE -->
-            <h2 class="copy-marker" data-copy="RESULTS-HEADLINE">Real Results from Real Clients (Not Industry Averages)
-            </h2>
-
-            <!-- COPYWRITING MARKER: RESULTS DESCRIPTION -->
-            <p class="copy-marker" data-copy="RESULTS-DESCRIPTION">While your competitors are still sending "Hope this
-                email finds you well," our clients are booking meetings:</p>
-
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <!-- COPYWRITING MARKER: STAT 1 -->
-                    <div class="stat-number copy-marker" data-copy="STAT-1-NUMBER">10%</div>
-                    <div class="stat-label copy-marker" data-copy="STAT-1-LABEL">Average Response
-                        Rate<br><small>(Industry avg: 1%)</small></div>
-                </div>
-
-                <div class="stat-item">
-                    <!-- COPYWRITING MARKER: STAT 2 -->
-                    <div class="stat-number copy-marker" data-copy="STAT-2-NUMBER">More Revenue</div>
-                    <div class="stat-label copy-marker" data-copy="STAT-2-LABEL">Clients report 2x–3x higher conversion
-                        rates<br><small>(Just from better cold emails)</small></div>
-
-                </div>
-
-                <div class="stat-item">
-                    <!-- COPYWRITING MARKER: STAT 3 -->
-                    <div class="stat-number copy-marker" data-copy="STAT-3-NUMBER">2.3hrs</div>
-                    <div class="stat-label copy-marker" data-copy="STAT-3-LABEL">Time Spent on Outreach<br><small>(Down
-                            from 15+ hours)</small></div>
-                </div>
-
-                <div class="stat-item">
-                    <!-- COPYWRITING MARKER: STAT 4 -->
-                    <div class="stat-number copy-marker" data-copy="STAT-4-NUMBER">89%</div>
-                    <div class="stat-label copy-marker" data-copy="STAT-4-LABEL">Emails Land in Inbox<br><small>(Not
-                            spam folder)</small></div>
-                </div>
+            
+            <div style="margin-top: 40px;">
+                <a href="#contact" class="cta-button" style="font-size: 1.2rem; padding: 20px 50px;">Schedule Free Strategy Call Now</a>
             </div>
+        </section>
+    </main>
 
-            <a href="#contact" class="cta-primary" onclick="bookMeeting()">Get My Free Email Audit</a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="profile-image">
-                    <!-- COPYWRITING MARKER: PROFILE PLACEHOLDER -->
-                    <span class="copy-marker" data-copy="PROFILE-PLACEHOLDER">👤</span>
-                </div>
-                <h2 class="copy-marker" data-copy="ABOUT-HEADLINE">Hi, I'm Rifki — I Build Tools That Actually Get Cold
-                    Emails Noticed</h2>
-
-                <p class="copy-marker" data-copy="ABOUT-STORY">
-                    <strong>Here’s my story:</strong> I used to send tons of cold emails and barely got replies. Sound
-                    familiar? After trying generic tools that felt… generic, I started experimenting and coding my own
-                    approach.
-                </p>
-
-                <br>
-
-                <p class="copy-marker" data-copy="ABOUT-CREDENTIALS">
-                    I studied hundreds of high-performing emails, spotted what actually works, and used that to build an
-                    AI-driven system designed for one thing: getting replies. Now I help small teams and freelancers
-                    stop guessing and start booking real meetings.
-                </p>
-
-                <br>
-
-                <p class="copy-marker" data-copy="ABOUT-PROOF">
-                    <strong>Why it matters:</strong> If you're tired of sending emails into the void, this might be your
-                    new unfair advantage. Let’s build something that gets you noticed—in the right inboxes.
-                </p>
-
-                <a href="#contact" class="cta-primary" onclick="bookMeeting()">Book Free Email Audit</a>
-            </div>
-        </div>
-        </div>
-    </section>
-
-    <!-- Final CTA Section -->
-    <section class="cta-section" id="contact">
-        <div class="container">
-            <!-- COPYWRITING MARKER: FINAL CTA HEADLINE -->
-            <h2 class="copy-marker" data-copy="FINAL-CTA-HEADLINE">Stop Losing $6,000+ Monthly to Bad Cold Emails</h2>
-
-            <!-- COPYWRITING MARKER: FINAL CTA DESCRIPTION -->
-            <p class="copy-marker" data-copy="FINAL-CTA-DESCRIPTION">
-    <strong>Let’s make your emails work harder.</strong> Book a free 30-minute call and I’ll take a look at your current cold email strategy. 
-    You’ll walk away with a few actionable tips to boost your response rate — no pressure, just real, helpful feedback.
-</p>
-
-
-            <div class="cta-buttons">
-                <a href="#" class="cta-primary" onclick="bookMeeting()">Get My Free Email Audit</a>
-                <a href="mailto:hello@autonize.com" class="cta-secondary">Email Me Directly</a>
-            </div>
-
-            <!-- COPYWRITING MARKER: GUARANTEE/RISK REVERSAL -->
-            <p style="margin-top: 30px; opacity: 0.8;" class="copy-marker" data-copy="GUARANTEE">
-                <strong>Promise:</strong> No fluffy advice. No pressure to buy anything. Just honest, practical feedback tailored to your real emails. If you leave without at least one “aha” moment, that’s on me—and I’d love to know how to make it better.</p>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
         <div class="container">
-            <!-- COPYWRITING MARKER: FOOTER -->
-            <p class="copy-marker" data-copy="FOOTER">&copy; 2025 Autonize. Built for agencies and freelancers who want
-                results, not excuses.</p>
+            <p>&copy; 2024 AutomateAI. All rights reserved.</p>
+            <p style="opacity: 0.7; margin-top: 10px;">Building AI Systems That Actually Work</p>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for anchor links
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -632,79 +458,18 @@
             });
         });
 
-        // Book meeting function (replace with your Calendly link)
-        function bookMeeting() {
-            // Replace this URL with your actual Calendly link
-            window.open('https://calendly.com/rifkimaulanaaji/30min');
-        }
+        // Initialize particles when page loads
+        document.addEventListener('DOMContentLoaded', createParticles);
 
-        // Add some interactive elements
-        window.addEventListener('scroll', function () {
-            const nav = document.querySelector('nav');
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
             if (window.scrollY > 100) {
-                nav.style.background = 'rgba(0, 0, 0, 0.95)';
+                header.style.background = 'rgba(139, 92, 246, 0.15)';
             } else {
-                nav.style.background = 'rgba(0, 0, 0, 0.9)';
-            }
-        });
-
-        // Animate stats when they come into view
-        const observerOptions = {
-            threshold: 0.5,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver(function (entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const statNumbers = entry.target.querySelectorAll('.stat-number');
-                    statNumbers.forEach(stat => {
-                        stat.style.animation = 'countUp 2s ease-out';
-                    });
-                }
-            });
-        }, observerOptions);
-
-        const resultsSection = document.querySelector('.results');
-        if (resultsSection) {
-            observer.observe(resultsSection);
-        }
-
-        // Add CSS animation for count up effect
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes countUp {
-                from {
-                    opacity: 0;
-                    transform: translateY(20px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-        `;
-        document.head.appendChild(style);
-
-        // Toggle copy markers for development (remove in production)
-        document.addEventListener('keydown', function (e) {
-            if (e.key === 'c' && e.ctrlKey && e.shiftKey) {
-                const markers = document.querySelectorAll('.copy-marker::after');
-                document.body.classList.toggle('show-copy-markers');
+                header.style.background = 'rgba(139, 92, 246, 0.1)';
             }
         });
     </script>
-
-    <!-- Development helper CSS (remove in production) -->
-    <style>
-        .show-copy-markers .copy-marker::after {
-            display: block !important;
-        }
-
-        .copy-marker::after {
-            display: none;
-        }
-    </style>
 </body>
-
 </html>
